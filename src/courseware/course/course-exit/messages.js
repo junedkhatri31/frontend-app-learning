@@ -1,6 +1,11 @@
 import { defineMessages } from '@edx/frontend-platform/i18n';
 
 const messages = defineMessages({
+  applyForCredit: {
+    id: 'courseExit.programs.applyForCredit',
+    defaultMessage: 'Apply for credit',
+    description: 'Button for the learner to apply for course credit',
+  },
   certificateHeaderDownloadable: {
     id: 'courseCelebration.certificateHeader.downloadable',
     defaultMessage: 'Your certificate is available!',
@@ -71,6 +76,18 @@ const messages = defineMessages({
     defaultMessage: 'Add to LinkedIn profile',
     description: "Button to add certificate information to the user's LinkedIn profile",
   },
+  microBachelorsLearnMore: {
+    id: 'courseExit.programs.microBachelors.learnMore',
+    defaultMessage: 'Learn more about how your MicroBachelors credential can be applied for credit.',
+  },
+  microMastersLearnMore: {
+    id: 'courseExit.programs.microMasters.learnMore',
+    defaultMessage: 'Learn more about the process of applying MicroMasters certificates to Masters degrees.',
+  },
+  microMastersMessage: {
+    id: 'courseExit.programs.microMasters.mastersMessage',
+    defaultMessage: "If you're interested in using your MicroMasters certificate towards a Master's program, you can get started today!",
+  },
   nextButtonComplete: {
     id: 'learn.sequence.navigation.complete.button', // for historical reasons
     defaultMessage: 'Complete the course',
@@ -83,6 +100,10 @@ const messages = defineMessages({
     id: 'courseExit.profileLink',
     defaultMessage: 'Profile',
     description: "Link to user's profile",
+  },
+  programsLastCourseHeader: {
+    id: 'courseExit.programs.lastCourse',
+    defaultMessage: 'You have completed the last course in {title}!',
   },
   requestCertificateBodyText: {
     id: 'courseCelebration.requestCertificateBodyText',

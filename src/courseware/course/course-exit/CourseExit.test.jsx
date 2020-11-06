@@ -190,6 +190,79 @@ describe('Course Exit Pages', () => {
       expect(screen.getByRole('link', { name: 'View my certificate' })).toBeInTheDocument();
       expect(screen.getByRole('link', { name: 'Add to LinkedIn profile' })).toBeInTheDocument();
     });
+
+    describe('Program Completion experience', () => {
+      beforeEach(() => {
+        setMetadata({
+          certificate_data: {
+            cert_status: 'downloadable',
+            cert_web_view_url: '/certificates/cooluuidgoeshere',
+          },
+        });
+      });
+
+      it('Does not render ProgramCompletion no related programs', async () => {
+        await fetchAndRender(<CourseCelebration />);
+        expect(screen.queryByTestId('program-completion')).not.toBeInTheDocument();
+      });
+
+      it('Does not render ProgramCompletion if program is incomplete', async () => {
+        setMetadata({
+          related_programs: [{
+            progress: {
+              completed: 1,
+              in_progress: 1,
+              not_started: 1,
+            },
+            title: 'Example MicroMasters Program',
+            type: 'micromasters',
+            uuid: '23456',
+            url: 'http://localhost:18000/dashboard/programs/23456',
+          }],
+        });
+        await fetchAndRender(<CourseCelebration />);
+
+        expect(screen.queryByTestId('program-completion')).not.toBeInTheDocument();
+      });
+
+      it('Renders ProgramCompletion if program is complete', async () => {
+        setMetadata({
+          related_programs: [{
+            progress: {
+              completed: 3,
+              in_progress: 0,
+              not_started: 0,
+            },
+            title: 'Example MicroMasters Program',
+            type: 'micromasters',
+            uuid: '23456',
+            url: 'http://localhost:18000/dashboard/programs/23456',
+          }],
+        });
+        await fetchAndRender(<CourseCelebration />);
+
+        expect(screen.queryByTestId('micromasters')).toBeInTheDocument();
+      });
+
+      it('Does not render ProgramCompletion if program is an excluded type', async () => {
+        setMetadata({
+          related_programs: [{
+            progress: {
+              completed: 3,
+              in_progress: 0,
+              not_started: 0,
+            },
+            title: 'Example Excluded Program',
+            type: 'excluded-program-type',
+            uuid: '23456',
+            url: 'http://localhost:18000/dashboard/programs/23456',
+          }],
+        });
+        await fetchAndRender(<CourseCelebration />);
+
+        expect(screen.queryByTestId('excluded-program-type')).not.toBeInTheDocument();
+      });
+    });
   });
 
   describe('Course Non-passing Experience', () => {
