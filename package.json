@@ -59,7 +59,7 @@
     "redux": "4.0.5",
     "regenerator-runtime": "0.13.7",
     "reselect": "4.0.0",
-    "truncate-html": "^1.0.3"
+    "truncate-html": "1.0.3"
   },
   "devDependencies": {
     "@edx/frontend-build": "5.2.7",
@@ -73,7 +73,7 @@
     "glob": "7.1.6",
     "husky": "3.1.0",
     "jest": "24.9.0",
-    "jest-chain": "^1.1.5",
+    "jest-chain": "1.1.5",
     "reactifex": "1.1.1",
     "rosie": "2.0.1"
   }
